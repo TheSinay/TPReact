@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couleur dynamique</title>
+</head>
+<body>
+    <input type="number" id="red" min="0" max="255" placeholder="Rouge">
+    <input type="number" id="green" min="0" max="255" placeholder="Vert">
+    <input type="number" id="blue" min="0" max="255" placeholder="Bleu">
+    <button id="random">Random</button>
+
+    <script>
+        const redInput = document.getElementById("red");
+        const greenInput = document.getElementById("green");
+        const blueInput = document.getElementById("blue");
+        const randomButton = document.getElementById("random");
+
+        function updateBackground() {
+            const r = redInput.value || 0;
+            const g = greenInput.value || 0;
+            const b = blueInput.value || 0;
+
+            document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+            if (r == g && g == b) {
+                alert("Les trois valeurs sont identiques !");
+            }
+        }
+
+        function setRandomColors() {
+            redInput.value = Math.floor(Math.random() * 256);
+            greenInput.value = Math.floor(Math.random() * 256);
+            blueInput.value = Math.floor(Math.random() * 256);
+            updateBackground();
+        }
+
+        redInput.addEventListener("input", updateBackground);
+        greenInput.addEventListener("input", updateBackground);
+        blueInput.addEventListener("input", updateBackground);
+        randomButton.addEventListener("click", setRandomColors);
+    </script>
+</body>
+</html>
